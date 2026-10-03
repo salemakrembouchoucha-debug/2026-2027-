@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مغامرة العلوم: الطبيعة الجُسيمية للمادة - الصف السابع (المنهج القطري)</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --accent: #06b6d4;
+      --bg: #f8fafc;
+      --card-bg: rgba(255, 255, 255, 0.94);
+      --card-border: rgba(226, 232, 240, 0.85);
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --success: #059669;
+      --success-bg: #ecfdf5;
+      --success-border: #a7f3d0;
+      --danger: #e11d48;
+      --danger-bg: #fff1f2;
+      --danger-border: #fecdd3;
+      --warning: #d97706;
+      --warning-bg: #fffbeb;
+      --radius: 20px;
+      --shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.06), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+    }
+
+    body.dark-mode {
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --accent: #22d3ee;
+      --bg: #0b1120;
+      --card-bg: rgba(15, 23, 42, 0.90);
+      --card-border: rgba(51, 65, 85, 0.65);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --success-bg: rgba(6, 78, 59, 0.4);
+      --success-border: #047857;
+      --danger-bg: rgba(136, 19, 55, 0.4);
+      --danger-border: #be123c;
+      --warning-bg: rgba(120, 53, 15, 0.35);
+      --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Arabic", "Cairo", "Tajawal", "Segoe UI Arabic", Tahoma, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.12) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(6, 182, 212, 0.12) 0px, transparent 50%),
+        radial-gradient(at 50% 100%, rgba(99, 102, 241, 0.08) 0px, transparent 50%);
+    }
+
+    body.dark-mode {
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(30, 58, 138, 0.35) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(14, 116, 144, 0.3) 0px, transparent 50%),
+        radial-gradient(at 50% 100%, rgba(67, 56, 202, 0.25) 0px, transparent 50%);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 26px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
+    }
+
+    .header-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--card-border);
+      margin-bottom: 18px;
+    }
+
+    .stats {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .stat-badge {
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-weight: 800;
+      font-size: 13px;
+      border: 1px solid rgba(37, 99, 235, 0.2);
+    }
+
+    .stat-badge.streak {
+      background: rgba(217, 119, 6, 0.12);
+      color: var(--warning);
+      border-color: rgba(217, 119, 6, 0.25);
+    }
+
+    .progress-wrap {
+      width: 100%;
+      height: 10px;
+      background: rgba(148, 163, 184, 0.2);
+      border-radius: 9999px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #2563eb, #6366f1, #06b6d4);
+      width: 0%;
+      transition: width 0.35s ease;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 14px;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #1d4ed8, #1e40af);
+    }
+
+    .btn-secondary {
+      background: rgba(148, 163, 184, 0.12);
+      color: var(--text);
+      border-color: var(--card-border);
+    }
+    .btn-secondary:hover {
+      background: rgba(148, 163, 184, 0.2);
+    }
+
+    .input-text {
+      width: 100%;
+      padding: 15px 18px;
+      border-radius: 14px;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--text);
+      font-size: 15px;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .input-text:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.18);
+    }
+
+    .option-btn {
+      width: 100%;
+      text-align: right;
+      padding: 15px 18px;
+      border-radius: 16px;
+      border: 1px solid var(--card-border);
+      background: rgba(248, 250, 252, 0.7);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 11px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.2s ease;
+    }
+    body.dark-mode .option-btn {
+      background: rgba(30, 41, 59, 0.6);
+    }
+    .option-btn:hover:not(:disabled) {
+      background: rgba(37, 99, 235, 0.08);
+      border-color: var(--primary);
+      transform: translateX(-2px);
+    }
+    .option-btn .letter-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .feedback-box {
+      border-radius: 18px;
+      padding: 22px;
+      margin-top: 22px;
+      animation: fadeIn 0.3s ease;
+    }
+    .feedback-box.correct {
+      background: var(--success-bg);
+      border: 1px solid var(--success-border);
+      color: #064e3b;
+    }
+    body.dark-mode .feedback-box.correct {
+      color: #d1fae5;
+    }
+    .feedback-box.incorrect {
+      background: var(--danger-bg);
+      border: 1px solid var(--danger-border);
+      color: #881337;
+    }
+    body.dark-mode .feedback-box.incorrect {
+      color: #ffe4e6;
+    }
+    .feedback-title {
+      font-size: 20px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+    .feedback-explanation {
+      background: rgba(255, 255, 255, 0.88);
+      padding: 14px;
+      border-radius: 12px;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #0f172a;
+      line-height: 1.6;
+    }
+    body.dark-mode .feedback-explanation {
+      background: rgba(15, 23, 42, 0.8);
+      color: #e2e8f0;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .canvas-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: rgba(148, 163, 184, 0.08);
+      padding: 16px;
+      border-radius: 16px;
+      margin-bottom: 18px;
+      border: 1px solid var(--card-border);
+    }
+    canvas {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+      max-width: 100%;
+    }
+    body.dark-mode canvas {
+      background: #0f172a;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      background: rgba(148, 163, 184, 0.15);
+      color: var(--text);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 640px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="app"></div>
+
+  <script>
+    const LESSONS_DATA = [
+      {
+        id: 'lesson-1',
+        number: 'الدرس 1-1',
+        title: 'كيف تسلك كل من المواد الصلبة والسائلة والغازية سلوكاً مختلفاً؟',
+        standard: 'C0701.1',
+        description: 'إدراك أن المادة مكونة من جسيمات دقيقة حركتها مستمرة وعشوائية ومقارنة سلوك المواد المختلفة.'
+      },
+      {
+        id: 'lesson-2',
+        number: 'الدرس 2-1',
+        title: 'أي نموذج نستخدم لوصف سلوك المواد الصلبة والسائلة والغازية؟',
+        standard: 'C0701.2',
+        description: 'وضع تصوّر لتركيب المواد الصلبة والسائلة والغازية في ضوء ترتيب الجسيمات وحركتها وتطبيقاتها.'
+      },
+      {
+        id: 'lesson-3',
+        number: 'الدرس 3-1',
+        title: 'ما الخصائص الفيزيائية لكل من المواد الصلبة والسائلة والغازية؟',
+        standard: 'C0701.3',
+        description: 'مقارنة الخصائص الفيزيائية (الشكل، الحجم، الكثافة، قابلية الانضغاط) في ضوء نموذج تركيب المادة.'
+      },
+      {
+        id: 'lesson-4',
+        number: 'الدرس 4-1',
+        title: 'كيف تتحرك الجُسيمات في السوائل والغازات؟',
+        standard: 'C0702.1',
+        description: 'وصف وتوضيح حركة جُسيمات السوائل والغازات وظاهرة الانتشار والعوامل المؤثرة فيها.'
+      },
+      {
+        id: 'lesson-review',
+        number: 'تحدي شامل',
+        title: 'المراجعة الشاملة وتحدي المفاهيم العلمية',
+        standard: 'C0701, C0702',
+        description: 'أسئلة تفاعلية ومسائل تطبيقية شاملة لجميع معايير الوحدة الأولى لاختبار الفهم والإتقان.'
+      }
+    ];
+
+    const ALL_QUESTIONS_DATA = [
+      {
+        id: 'q1-1',
+        lessonId: 'lesson-1',
+        lessonTitle: 'الدرس 1-1',
+        concept: 'مفهوم المادة',
+        standard: 'C0701.1',
+        question: 'ما المصطلح العلمي الذي يعبر عن كل شيء له كتلة ويشغل حيّزاً من الفراغ؟',
+        options: ['الضغط', 'الكثافة', 'المادة', 'الجاذبية'],
+        correctAnswerIndex: 2,
+        explanation: 'المادة (Matter) هي التركيب الفيزيائي لجميع الأشياء، وهي كل شيء له كتلة ويشغل حيزاً من الفراغ.'
+      },
+      {
+        id: 'q1-2',
+        lessonId: 'lesson-1',
+        lessonTitle: 'الدرس 1-1',
+        concept: 'مفهوم الجسيم',
+        standard: 'C0701.1',
+        question: 'ما المقصود بـ "الجُسيم" (Particle) كما ورد في مفردات الوحدة؟',
+        options: ['الشيء الذي يُكوّن المادة', 'حيز الفراغ الذي تشغله المادة', 'مقياس لكتلة المادة في حجم معين', 'مدى قابلية المادة للضغط'],
+        correctAnswerIndex: 0,
+        explanation: 'الجُسيم (Particle) هو الشيء الذي يُكوّن المادة، والمادة مكوّنة من جسيمات متناهية في الصغر.'
+      },
+      {
+        id: 'q1-3',
+        lessonId: 'lesson-1',
+        lessonTitle: 'الدرس 1-1',
+        concept: 'كتل المكعبات متماثلة الحجم',
+        standard: 'C0701.1',
+        question: 'عند قياس كتل ثلاثة مكعبات متماثلة في الحجم والشكل ومصنوعة من مواد مختلفة؛ ما الترتيب التصاعدي الصحيح من حيث الكتلة؟',
+        options: ['الخشب ثم الألومنيوم ثم النحاس', 'النحاس ثم الخشب ثم الألومنيوم', 'الألومنيوم ثم النحاس ثم الخشب', 'الخشب ثم النحاس ثم الألومنيوم'],
+        correctAnswerIndex: 0,
+        explanation: 'الترتيب التصاعدي الصحيح للكتل هو الخشب ثم يليه الألومنيوم ثم النحاس؛ فالخشب يحتوي على فراغات هوائية تجعله أخف.'
+      },
+      {
+        id: 'q1-4',
+        lessonId: 'lesson-1',
+        lessonTitle: 'الدرس 1-1',
+        concept: 'انتشار كبريتات النحاس في الماء',
+        standard: 'C0701.1',
+        question: 'عند وضع بلورة كبريتات النحاس في قطرة ماء دون تحريكها، يتحول لون الماء للأزرق لأن جسيمات الماء تتحرك وتنقل جسيمات البلورة معها.',
+        type: 'boolean',
+        correctAnswer: true,
+        explanation: 'تنتشر جسيمات البلورة عبر الماء لأن جسيمات الماء في حركة مستمرة فتحمل معها جسيمات البلورة المذابة دون الحاجة لتحريك السائل.'
+      },
+      {
+        id: 'q1-5',
+        lessonId: 'lesson-1',
+        lessonTitle: 'الدرس 1-1',
+        concept: 'توصيل الحرارة في الساق الفلزية',
+        standard: 'C0701.1',
+        question: 'عند تسخين أحد طرفي ساق فلزية ملتصق بطرفها الآخر مشبك ورق بواسطة الفازلين، ما سبب سقوط المشبك؟',
+        options: [
+          'تتحرك جسيمات الفلز من طرف لآخر',
+          'تتسبب الطاقة الحرارية في اهتزاز جسيمات الفلز ويتم تمرير الاهتزاز عبر الجسيمات فينصهر الفازلين',
+          'ينكمش طول الساق الفلزية بالحرارة',
+          'يتسرب الهواء داخل الساق الفلزية'
+        ],
+        correctAnswerIndex: 1,
+        explanation: 'تتسبب الطاقة الحرارية في اهتزاز الجسيمات داخل الساق الفلزية، وتمرر الجسيمات هذا الاهتزاز إلى الطرف الآخر فينصهر الفازلين ويسقط المشبك.'
+      },
+      {
+        id: 'q1-6',
+        lessonId: 'lesson-1',
+        lessonTitle: 'الدرس 1-1',
+        concept: 'تطبيقات الغاز المسال في قطر',
+        standard: 'C0701.1',
+        question: 'في دولة قطر (مدينة راس لفان)، لماذا يُضغط الغاز الطبيعي لتحويله لغاز مسال (LNG) قبل نقله بالناقلات؟',
+        options: [
+          'لأن الضغط يجعل جسيماته متباعدة فيزداد حجمه',
+          'لأن ضغط الغاز يجعل جسيماته متقاربة ويشغل حيزاً أصغر مما يمكن من نقل كمية أكبر في وقت معين',
+          'لتغيير ذرات الغاز وتحويله إلى وقود صلب',
+          'لتقليل ثمن الغاز الطبيعي'
+        ],
+        correctAnswerIndex: 1,
+        explanation: 'عند ضغط الغاز تصبح جسيماته متقاربة ويصبح الحيز صغيراً فيتحول لسائل، وبهذه الطريقة يمكن نقل كمية أكبر من جسيمات الغاز في وقت معين.'
+      },
+      {
+        id: 'q1-7',
+        lessonId: 'lesson-1',
+        lessonTitle: 'الدرس 1-1',
+        concept: 'نقل المواد عبر خطوط الأنابيب',
+        standard: 'C0701.1',
+        question: 'لماذا يمكن نقل النفط والغاز الطبيعي عبر خطوط الأنابيب بينما لا يمكن نقل الفحم بهذه الطريقة؟',
+        options: [
+          'لأن جسيمات الغاز والنفط (السائل) تتدفق وتتحرك، بينما جسيمات الفحم الصلب ثابتة في مكانها وغير قابلة للتدفق أو السكب',
+          'لأن الفحم يذيب الأنابيب المعدنية',
+          'لأن قوى التجاذب في الغاز والنفط أكبر من الفحم',
+          'لأن الفحم خفيف جداً ويطير في الهواء'
+        ],
+        correctAnswerIndex: 0,
+        explanation: 'تتدفق جسيمات الغاز الطبيعي والنفط (في الحالة السائلة) لذا يمكن سكبها وضخها، أما جسيمات الفحم الصلب فثابتة في مكانها وغير قابلة للتدفق.'
+      },
+      {
+        id: 'q2-1',
+        lessonId: 'lesson-2',
+        lessonTitle: 'الدرس 2-1',
+        concept: 'تركيب المادة الصلبة',
+        standard: 'C0701.2',
+        question: 'أي مما يلي يصف بدقة تركيب المادة الصلبة (Solid Structure)؟',
+        options: [
+          'جسيمات متباعدة جداً وتتحرك بحرية في جميع الاتجاهات',
+          'جسيمات متراصة ولها موقع محدد وثابت وتهتز في مواضعها مع قوى تجاذب قوية',
+          'جسيمات متلامسة تنزلق فوق بعضها وقوى التجاذب بينها ضعيفة جداً',
+          'جسيمات غير متلامسة ولا توجد بينها قوى تجاذب'
+        ],
+        correctAnswerIndex: 1,
+        explanation: 'تكون جسيمات المادة الصلبة مرتبة على نحو منظم ومتقاربة جداً ومتراصة، ولها موقع محدد وتهتز في مواضعها وتوجد بينها قوى تجاذب قوية.'
+      },
+      {
+        id: 'q2-2',
+        lessonId: 'lesson-2',
+        lessonTitle: 'الدرس 2-1',
+        concept: 'تركيب المادة السائلة',
+        standard: 'C0701.2',
+        question: 'جسيمات المادة السائلة متلامسة ولكن ليس لها ترتيب ثابت، وتستطيع التحرك ببطء والانزلاق بعضها فوق بعض.',
+        type: 'boolean',
+        correctAnswer: true,
+        explanation: 'جسيمات المادة السائلة متقاربة وتلامس بعضها لكن ليس لها ترتيب ثابت، وتستطيع أن تنزلق وتتحرك ببطء بعضها فوق بعض.'
+      },
+      {
+        id: 'q2-3',
+        lessonId: 'lesson-2',
+        lessonTitle: 'الدرس 2-1',
+        concept: 'وظيفة مطافئ الحريق',
+        standard: 'C0701.2',
+        question: 'ما الوظيفة الأساسية لمطافئ الحريق لإخماد النيران؟',
+        options: [
+          'تبريد النار و/أو توفير حاجز لمنع الأكسجين من الوصول إلى النار',
+          'تفكيك ذرات الوقود إلى جسيمات أصغر حجماً',
+          'زيادة المساحة الهوائية حول اللهب',
+          'توليد شحنات كهربائية مضادة للحرارة'
+        ],
+        correctAnswerIndex: 0,
+        explanation: 'وظيفة مطافئ الحريق هي إخماد الحرائق عن طريق: تبريد النار و/أو توفير حاجز لمنع الأكسجين من الوصول إلى النار.'
+      },
+      {
+        id: 'q2-4',
+        lessonId: 'lesson-2',
+        lessonTitle: 'الدرس 2-1',
+        concept: 'تطبيق موقد الخشب ومطافئ الحريق',
+        standard: 'C0701.2',
+        question: 'أي مطفأة حريق تستخدم لإخماد موقد من الخشب إذا كنت تريد إشعال هذا الموقد الخشبي نفسه في وقت لاحق من اليوم؟',
+        options: [
+          'مطفأة الحريق المائية',
+          'مطفأة غاز ثاني أكسيد الكربون، لأنها توفر الغاز وتتحرك جسيماته بعيداً عن النار فيسهل إشعاله لاحقاً',
+          'مطفأة المسحوق الجاف',
+          'لا تستخدم أي مطفأة'
+        ],
+        correctAnswerIndex: 1,
+        explanation: 'مطفأة الحريق بغاز ثاني أكسيد الكربون توفر الغاز وتتحرك جسيماته بعيداً عن النار بعد الإخماد، فيمكن إشعال نار جديدة لاحقاً دون إتلاف الخشب.'
+      },
+      {
+        id: 'q2-5',
+        lessonId: 'lesson-2',
+        lessonTitle: 'الدرس 2-1',
+        concept: 'كثافة الجسيمات في مطافئ الحريق',
+        standard: 'C0701.2',
+        question: 'مطافئ الحريق الثلاث (المائية، المسحوق، ثاني أكسيد الكربون) لها نفس الحجم؛ أي مطفأة تحتوي على أكبر عدد من الجسيمات لنفس الحجم؟',
+        options: ['مطفأة غاز ثاني أكسيد الكربون', 'مطفأة الحريق المائية', 'مطفأة المسحوق (المادة الصلبة)', 'جميعها متساوية تماماً'],
+        correctAnswerIndex: 2,
+        explanation: 'مطفأة الحريق التي تحتوي على مسحوق مادة صلبة تحتوي على كمية أكبر من الجسيمات لأن جسيمات المادة الصلبة متقاربة ومتراصة بشكل أكبر.'
+      },
+      {
+        id: 'q3-1',
+        lessonId: 'lesson-3',
+        lessonTitle: 'الدرس 3-1',
+        concept: 'مفهوم الحجم',
+        standard: 'C0701.3',
+        question: 'ما هو المفهوم العلمي الذي يعبر عن "مقدار الحيّز أو الفراغ الذي تشغله المادة"؟',
+        options: ['الكتلة', 'الكثافة', 'الحجم', 'الضغط'],
+        correctAnswerIndex: 2,
+        explanation: 'الحجم (Volume) هو مقدار الحيز (الفراغ) الذي تشغله المادة.'
+      },
+      {
+        id: 'q3-2',
+        lessonId: 'lesson-3',
+        lessonTitle: 'الدرس 3-1',
+        concept: 'مفهوم الكثافة وقانونها',
+        standard: 'C0701.3',
+        question: 'ما الوصف الرياضي والعلمي الصحيح للكثافة (Density)؟',
+        options: [
+          'مقدار الفراغ الذي تشغله المادة',
+          'مقدار كتلة المادة في حجم معين (الكثافة = الكتلة ÷ الحجم)',
+          'مقياس لسرعة انتشار الجسيمات في الهواء',
+          'مقدار الطاقة الحرارية داخل المادة'
+        ],
+        correctAnswerIndex: 1,
+        explanation: 'الكثافة هي مقدار كتلة المادة في حجم معين، وتُحسب بالقانون: الكثافة (g/cm³) = الكتلة (g) ÷ الحجم (cm³).'
+      },
+      {
+        id: 'q3-3',
+        lessonId: 'lesson-3',
+        lessonTitle: 'الدرس 3-1',
+        concept: 'تجربة انضغاط المحاقن',
+        standard: 'C0701.3',
+        question: 'عند وضع ملح (صلب)، وماء (سائل)، وهواء (غاز) في محاقن مغلقة الفوهة؛ في أي المحاقن يتحرك المقبض وينضغط؟',
+        options: ['في حالة الملح فقط', 'في حالة الماء فقط', 'في حالة الهواء (الغاز) فقط', 'في جميع الحالات بالتساوي'],
+        correctAnswerIndex: 2,
+        explanation: 'يتحرك مقبض المحقن فقط عند محاولة ضغط الغاز (الهواء) لوجود فراغات كبيرة بين جسيماته، بينما الملح والماء غير قابلين للانضغاط.'
+      },
+      {
+        id: 'q3-4',
+        lessonId: 'lesson-3',
+        lessonTitle: 'الدرس 3-1',
+        concept: 'استثناء الماء والثلج',
+        standard: 'C0701.3',
+        question: 'الثلج (مادة صلبة) أقل كثافة من الماء (السائل) ويطفو على سطحه لأن جسيمات الثلج تترتب بشكل يترك فراغات سداسية نسبياً بين الجسيمات.',
+        type: 'boolean',
+        correctAnswer: true,
+        explanation: 'الثلج استثناء علمي حيث يكون أقل كثافة من الماء السائل ويطفو فوقه، وعند انصهاره تتقارب الجسيمات فيقل الحجم وتزداد الكثافة.'
+      },
+      {
+        id: 'q3-5',
+        lessonId: 'lesson-3',
+        lessonTitle: 'الدرس 3-1',
+        concept: 'حساب حجم مكعب صلب',
+        standard: 'C0701.3',
+        question: 'مكعب فلزي صلب طول كل جانب من جوانبه 2 cm؛ كم يبلغ حجمه بوحدة cm³؟',
+        options: ['6 cm³', '8 cm³ (2 × 2 × 2)', '4 cm³', '16 cm³'],
+        correctAnswerIndex: 1,
+        explanation: 'حجم المكعب = الطول × العرض × الارتفاع = 2 × 2 × 2 = 8 cm³.'
+      },
+      {
+        id: 'q4-1',
+        lessonId: 'lesson-4',
+        lessonTitle: 'الدرس 4-1',
+        concept: 'أين يحدث الانتشار؟',
+        standard: 'C0702.1',
+        question: 'في أي حالات المادة يحدث الانتشار، وفي أيها لا يحدث؟',
+        options: [
+          'يحدث في المواد الصلبة والسائلة، ولا يحدث في الغازات',
+          'يحدث بسهولة وسرعة في الغازات، وبصورة أبطأ في السوائل، ولا يحدث في المواد الصلبة',
+          'يحدث في جميع حالات المادة بنفس السرعة',
+          'يحدث في المواد الصلبة فقط'
+        ],
+        correctAnswerIndex: 1,
+        explanation: 'يحدث الانتشار بسهولة وبسرعة في الغازات، ويحدث بصورة أقل وأبطأ في السوائل، ولا يحدث الانتشار في المواد الصلبة.'
+      },
+      {
+        id: 'q4-2',
+        lessonId: 'lesson-4',
+        lessonTitle: 'الدرس 4-1',
+        concept: 'تجربة تفاعل الأمونيا وكلوريد الهيدروجين',
+        standard: 'C0702.1',
+        question: 'في تجربة انتشار غاز كلوريد الهيدروجين وغاز الأمونيا في أنبوب زجاجي، لماذا تتكون الحلقة البيضاء بالقرب من طرف كلوريد الهيدروجين؟',
+        options: [
+          'لأن جسيمات الأمونيا أخف كتلة فتتحرك وتنتشر أسرع وتقطع مسافة أكبر من كلوريد الهيدروجين الأثقل',
+          'لأن جسيمات كلوريد الهيدروجين تنعدم قوى التجاذب بينها',
+          'لأن طرف كلوريد الهيدروجين تم تسخينه',
+          'لأن غاز الأمونيا مادة صلبة لا تتحرك'
+        ],
+        correctAnswerIndex: 0,
+        explanation: 'جسيمات الأمونيا أخف من جسيمات كلوريد الهيدروجين، وبالتالي تتحرك وتنتشر بشكل أسرع وتقطع مسافة أطول فتتكون الحلقة بالقرب من طرف كلوريد الهيدروجين.'
+      },
+      {
+        id: 'q4-3',
+        lessonId: 'lesson-4',
+        lessonTitle: 'الدرس 4-1',
+        concept: 'تأثير درجة الحرارة على سرعة الانتشار',
+        standard: 'C0702.1',
+        question: 'ما تأثير رفع درجة الحرارة على معدل سرعة انتشار المواد؟',
+        options: [
+          'كلما ارتفعت درجة الحرارة يقل معدل الانتشار',
+          'كلما ارتفعت درجة الحرارة يزداد معدل الانتشار لأن الجسيمات تكتسب طاقة حركية أكبر فتتحرك بسرعة أكبر',
+          'لا تؤثر درجة الحرارة مطلقاً على سرعة حركة الجسيمات',
+          'تزداد سرعة الانتشار في الماء البارد فقط'
+        ],
+        correctAnswerIndex: 1,
+        explanation: 'كلما ارتفعت درجة الحرارة ازدادت سرعة انتشار المادة، ويعود ذلك إلى امتلاك الجسيمات طاقة حركية أكبر عند درجات حرارة أعلى فتتحرك بسرعة أكبر.'
+      },
+      {
+        id: 'q4-4',
+        lessonId: 'lesson-4',
+        lessonTitle: 'الدرس 4-1',
+        concept: 'مقارنة انتشار الألوان (الألورا والتارترازين)',
+        standard: 'C0702.1',
+        question: 'مادة "الألورا" الحمراء كتلتها 496، ومادة "التارترازين" الصفراء كتلتها 534؛ إذا أضيفتا للماء الدافئ معاً، أي المادتين تنتشر أسرع؟ ولماذا؟',
+        options: [
+          'التارترازين لأنها أثقل وزناً',
+          'الألورا لأن جسيماتها أخف كتلة فتنتشر أسرع، بينما جسيمات التارترازين الصفراء أثقل فتستغرق زمناً أطول',
+          'تنتشران بنفس السرعة بالضبط',
+          'لا تنتشر أي منهما في الماء الدافئ'
+        ],
+        correctAnswerIndex: 1,
+        explanation: 'جسيمات ملونات الطعام الصفراء أثقل (534) لذا تستغرق زمناً أطول في الانتشار، بينما جسيمات الألورا الحمراء أخف (496) فتنتشر بشكل أسرع.'
+      },
+      {
+        id: 'q4-5',
+        lessonId: 'lesson-4',
+        lessonTitle: 'الدرس 4-1',
+        concept: 'غاز الميثان في قطر',
+        standard: 'C0702.1',
+        question: 'غاز الميثان وقود شديد الانفجار وليس له رائحة؛ لماذا يضيف إليه الكيميائيون مادة "المركابتان" ذات الرائحة النفاذة؟',
+        options: [
+          'لتغيير لونه حتى يصبح مرئياً بالعين',
+          'ليسهل على الناس اكتشاف تسربه بالشم عبر الهواء بالانتشار وتدارك الأمر وتجنب الانفجار',
+          'لزيادة كتلته وسرعة تدفقه',
+          'لتقليل سرعة انتشاره'
+        ],
+        correctAnswerIndex: 1,
+        explanation: 'الميثان ليس له رائحة وهو شديد الانفجار، فتضاف مادة المركابتان ذات الرائحة النفاذة ليسهل على الناس اكتشاف تسربه عبر الهواء بالانتشار وتجنب الانفجار.'
+      },
+      {
+        id: 'q5-1',
+        lessonId: 'lesson-review',
+        lessonTitle: 'تحدي شامل',
+        concept: 'مقارنة كثافة المواد المختلفة',
+        standard: 'C0701.1',
+        question: 'أي المواد التالية أكبر كثافة (أثقل)؟',
+        options: ['الزيت', 'الأكسجين', 'الحديد', 'الماء'],
+        correctAnswerIndex: 2,
+        explanation: 'الحديد هو المادة الأكبر كثافة (الأثقل) بين هذه المواد.'
+      },
+      {
+        id: 'q5-2',
+        lessonId: 'lesson-review',
+        lessonTitle: 'تحدي شامل',
+        concept: 'مقارنة قوى التجاذب في المواد',
+        standard: 'C0701.1',
+        question: 'أي المواد التالية قوة التجاذب بين جزيئاتها أقل؟',
+        options: ['الحديد', 'الزيت', 'الماء', 'الهواء'],
+        correctAnswerIndex: 3,
+        explanation: 'الهواء (غاز) هو المادة التي تكون قوة التجاذب بين جزيئاتها أقل مقارنة بالمواد الصلبة والسائلة.'
+      },
+      {
+        id: 'q5-3',
+        lessonId: 'lesson-review',
+        lessonTitle: 'تحدي شامل',
+        concept: 'تمدد حجم الماء عند تحوله لبخار',
+        standard: 'C0701.3',
+        question: 'إذا علمت أن حجم بخار الماء يزيد ليصبح 1700 ضعف حجمه السائل، فكم يصبح حجم قطرة ماء حجمها 0.5 cm³ عند تحولها لبخار؟',
+        options: ['0.5 cm³ دون تغير', '0.1 cm³', '850 cm³ (0.5 × 1700)', '5 cm³ فقط'],
+        correctAnswerIndex: 2,
+        explanation: 'يزيد حجم قطرة الماء عند تحولها لغاز ليصبح 1700 ضعف حجمها السائل: 0.5 cm³ × 1700 = 850 cm³.'
+      },
+      {
+        id: 'q5-4',
+        lessonId: 'lesson-review',
+        lessonTitle: 'تحدي شامل',
+        concept: 'تفسير حركة السوائل في مصباح الحمم',
+        standard: 'C0701.3',
+        question: 'في مصباح الحمم (Lava Lamp): لماذا ترتفع "الحمم" الملونة إلى أعلى عند تسخينها في أسفل المصباح؟',
+        options: [
+          'لأن الحمم المسخنة تصبح أقل كثافة من السائل المحيط بها الذي لا لون له',
+          'لأن الحمم المسخنة تصبح أكثر كثافة وتهبط للأسفل',
+          'لأن الحمم المسخنة تصبح مادة صلبة قاسية وتطفو',
+          'لأن الجسيمات تنضغط فيزداد وزنها'
+        ],
+        correctAnswerIndex: 0,
+        explanation: 'الحمم المسخنة تتمدد وتتباعد جسيماتها فتصبح أقل كثافة من السائل المحيط بها غير الملون، ولذلك ترتفع إلى الأعلى.'
+      }
+    ];
+
+    let state = {
+      view: 'welcome',
+      studentName: localStorage.getItem('grade7_student_name') || '',
+      selectedLessonId: 'all',
+      questions: [],
+      currentIndex: 0,
+      score: 0,
+      streak: 0,
+      answers: [],
+      currentFeedback: null,
+      isReviewMode: false,
+      mistakeQuestions: [],
+      simState: 'solid',
+      isDark: localStorage.getItem('grade7_theme') === 'dark'
+    };
+
+    function applyTheme() {
+      if (state.isDark) {
+        document.body.classList.add('dark-mode');
+      } else {
+        document.body.classList.remove('dark-mode');
+      }
+    }
+
+    function toggleDark() {
+      state.isDark = !state.isDark;
+      localStorage.setItem('grade7_theme', state.isDark ? 'dark' : 'light');
+      applyTheme();
+      render();
+    }
+
+    function init() {
+      applyTheme();
+      render();
+    }
+
+    function startQuiz(lessonId, isReview = false) {
+      state.selectedLessonId = lessonId;
+      state.isReviewMode = isReview;
+      state.currentIndex = 0;
+      state.score = 0;
+      state.streak = 0;
+      state.answers = [];
+      state.currentFeedback = null;
+
+      if (isReview) {
+        state.questions = [...state.mistakeQuestions];
+      } else if (lessonId === 'all') {
+        state.questions = [...ALL_QUESTIONS_DATA];
+      } else {
+        state.questions = ALL_QUESTIONS_DATA.filter(q => q.lessonId === lessonId);
+      }
+
+      state.questions = state.questions.map(q => {
+        if (q.type === 'mcq' || !q.type) {
+          const correctText = q.options[q.correctAnswerIndex];
+          const shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
+          const newCorrectIndex = shuffledOptions.indexOf(correctText);
+          return {
+            ...q,
+            options: shuffledOptions,
+            correctAnswerIndex: newCorrectIndex
+          };
+        }
+        return q;
+      });
+
+      state.view = 'quiz';
+      render();
+    }
+
+    function handleAnswer(isCorrect, userDetail) {
+      const q = state.questions[state.currentIndex];
+      if (isCorrect) {
+        state.score += 10 + Math.min(state.streak * 2, 10);
+        state.streak += 1;
+      } else {
+        state.streak = 0;
+        if (!state.mistakeQuestions.some(mq => mq.id === q.id)) {
+          state.mistakeQuestions.push(q);
+        }
+      }
+
+      state.answers.push({
+        questionId: q.id,
+        question: q,
+        isCorrect: isCorrect,
+        userDetail: userDetail
+      });
+
+      state.currentFeedback = {
+        isCorrect,
+        question: q
+      };
+
+      render();
+    }
+
+    function nextQuestion() {
+      state.currentFeedback = null;
+      if (state.currentIndex + 1 < state.questions.length) {
+        state.currentIndex += 1;
+        render();
+      } else {
+        state.view = 'report';
+        render();
+      }
+    }
+
+    function renderWelcome() {
+      return `
+        <div class="card" style="text-align: center; padding: 40px 24px;">
+          <div style="display:flex; justify-content:flex-end; margin-bottom:10px;">
+            <button class="btn btn-secondary" style="padding:6px 12px; font-size:12px;" onclick="toggleDark()">
+              ${state.isDark ? '☀️ الوضع النهاري' : '☾ الوضع الليلي'}
+            </button>
+          </div>
+          <span class="tag" style="background:rgba(37,99,235,0.12); color:var(--primary); margin-bottom:12px;">مادة العلوم - الصف السابع (المنهج القطري)</span>
+          <h1 style="font-size: 28px; font-weight: 900; margin-bottom: 8px;">مغامرة العلوم</h1>
+          <h2 style="font-size: 18px; color: var(--accent); margin-bottom: 14px;">الوحدة الأولى: الطبيعة الجُسيمية للمادة</h2>
+          <p style="color: var(--text-muted); font-size: 15px; max-width: 600px; margin: 0 auto 28px;">
+            استعد لمراجعة تفاعلية شيقة واختبار فهمك العلمي من خلال تحديات تفاعلية متنوعة ومحاكي علمي للجسيمات.
+          </p>
+
+          <div style="max-width: 400px; margin: 0 auto; text-align: right;">
+            <label style="display:block; font-weight:bold; margin-bottom:8px; font-size:14px;">اكتب اسمك للبدء:</label>
+            <input type="text" id="nameInput" class="input-text" placeholder="اسم الطالب..." value="${state.studentName}">
+            <button class="btn btn-primary" style="width:100%; margin-top:16px; padding:15px; font-size:16px;" onclick="saveNameAndProceed()">
+              ابدأ اللعبة 🚀
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    function saveNameAndProceed() {
+      const input = document.getElementById('nameInput');
+      const val = input ? input.value.trim() : '';
+      if (!val) {
+        alert('يرجى كتابة اسمك للمتابعة!');
+        return;
+      }
+      state.studentName = val;
+      localStorage.setItem('grade7_student_name', val);
+      state.view = 'level_select';
+      render();
+    }
+
+    function renderLevelSelect() {
+      let lessonsHtml = LESSONS_DATA.map(l => {
+        const count = ALL_QUESTIONS_DATA.filter(q => q.lessonId === l.id).length;
+        return `
+          <div class="card" style="margin-bottom:14px; display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="tag" style="background:rgba(37,99,235,0.12); color:var(--primary); font-weight:bold;">${l.number} • المعيار ${l.standard}</span>
+              <span style="font-size:12px; color:var(--text-muted);">${count} أسئلة</span>
+            </div>
+            <h3 style="font-size:17px; font-weight:900;">${l.title}</h3>
+            <p style="font-size:13px; color:var(--text-muted);">${l.description}</p>
+            <button class="btn btn-secondary" style="align-self:flex-start; margin-top:6px;" onclick="startQuiz('${l.id}')">
+              بدء هذا الدرس 🎯
+            </button>
+          </div>
+        `;
+      }).join('');
+
+      return `
+        <div class="card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
+            <div>
+              <h2 style="font-size: 21px; font-weight:900;">مرحباً بك يا ${state.studentName}! 👋</h2>
+              <p style="font-size: 13px; color:var(--text-muted);">اختر درساً للمراجعة أو خض التحدي الشامل لجميع معايير الوحدة:</p>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="btn btn-secondary" style="font-size:12px; padding:6px 12px;" onclick="toggleDark()">
+                ${state.isDark ? '☀️ النهاري' : '☾ الليلي'}
+              </button>
+              <button class="btn btn-secondary" style="font-size:12px; padding:6px 12px;" onclick="state.view='welcome'; render();">تغيير الاسم</button>
+            </div>
+          </div>
+
+          <div style="background:rgba(37,99,235,0.1); border:1px solid rgba(37,99,235,0.25); border-radius:14px; padding:18px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+            <div>
+              <h4 style="font-size:16px; font-weight:900; color:var(--primary);">التحدي الشامل لجميع دروس الوحدة 1</h4>
+              <p style="font-size:13px; color:var(--text-muted);">مراجعة شاملة لجميع المفاهيم والمعايير (${ALL_QUESTIONS_DATA.length} سؤالاً)</p>
+            </div>
+            <button class="btn btn-primary" onclick="startQuiz('all')">بدء الاختبار الشامل 🏆</button>
+          </div>
+
+          <div class="canvas-wrap">
+            <div style="font-weight:900; font-size:13px; margin-bottom:8px; width:100%; display:flex; justify-content:space-between; align-items:center;">
+              <span>محاكي النموذج الجُسيمي:</span>
+              <div style="display:flex; gap:6px;">
+                <button class="tag" style="cursor:pointer;" onclick="setSimState('solid')">صلبة</button>
+                <button class="tag" style="cursor:pointer;" onclick="setSimState('liquid')">سائلة</button>
+                <button class="tag" style="cursor:pointer;" onclick="setSimState('gas')">غازية</button>
+              </div>
+            </div>
+            <canvas id="simCanvas" width="280" height="130"></canvas>
+            <div id="simDesc" style="font-size:12px; color:var(--text-muted); margin-top:8px; text-align:center;">
+              الحالة الصلبة: جسيمات متراصة ومنتظمة تهتز في مواضعها ولا تتدفق.
+            </div>
+          </div>
+
+          <div>
+            ${lessonsHtml}
+          </div>
+        </div>
+      `;
+    }
+
+    function setSimState(mode) {
+      state.simState = mode;
+      const desc = document.getElementById('simDesc');
+      if (desc) {
+        if (mode === 'solid') desc.innerText = 'الحالة الصلبة: جسيمات متراصة ومنتظمة تهتز في مواضعها ولا تتدفق ولها شكل وحجم ثابتان.';
+        if (mode === 'liquid') desc.innerText = 'الحالة السائلة: جسيمات متلامسة تنزلق وتتحرك ببطء بعضها فوق بعض مما يسمح لها بالتدفق.';
+        if (mode === 'gas') desc.innerText = 'الحالة الغازية: جسيمات متباعدة جداً تتحرك بسرعة كبيرة وتتصادم وتنتشر لتملا الوعاء.';
+      }
+    }
+
+    function renderQuiz() {
+      const q = state.questions[state.currentIndex];
+      const progressPercent = Math.round(((state.currentIndex) / state.questions.length) * 100);
+
+      let optionsHtml = '';
+      if (q.type === 'boolean') {
+        optionsHtml = `
+          <div class="grid-2">
+            <button class="btn btn-secondary" style="padding:20px; font-size:16px;" ${state.currentFeedback ? 'disabled' : ''} onclick="handleAnswer(${q.correctAnswer === true}, 'صح')">
+              ✅ صحيحة (صح)
+            </button>
+            <button class="btn btn-secondary" style="padding:20px; font-size:16px;" ${state.currentFeedback ? 'disabled' : ''} onclick="handleAnswer(${q.correctAnswer === false}, 'خطأ')">
+              ❌ غير صحيحة (خطأ)
+            </button>
+          </div>
+        `;
+      } else {
+        optionsHtml = q.options.map((opt, idx) => {
+          const letter = ['أ', 'ب', 'ج', 'د'][idx] || (idx + 1);
+          return `
+            <button class="option-btn" ${state.currentFeedback ? 'disabled' : ''} onclick="handleAnswer(${idx === q.correctAnswerIndex}, '${opt.replace(/'/g, "\\'")}')">
+              <span class="letter-badge">${letter}</span>
+              <span>${opt}</span>
+            </button>
+          `;
+        }).join('');
+      }
+
+      let feedbackHtml = '';
+      if (state.currentFeedback) {
+        const isCorr = state.currentFeedback.isCorrect;
+        const correctText = q.type === 'boolean' ? (q.correctAnswer ? 'صحيحة (صح)' : 'غير صحيحة (خطأ)') : q.options[q.correctAnswerIndex];
+        feedbackHtml = `
+          <div class="feedback-box ${isCorr ? 'correct' : 'incorrect'}">
+            <div class="feedback-title">${isCorr ? 'أحسنت! إجابة صحيحة ✓' : 'حاول مرة أخرى! إجابة غير صحيحة ✕'}</div>
+            ${!isCorr ? `<div style="font-weight:bold; margin-bottom:8px;">الإجابة الصحيحة: ${correctText}</div>` : ''}
+            <div class="feedback-explanation">
+              <strong>التفسير العلمي:</strong><br>
+              ${q.explanation}
+            </div>
+            ${!isCorr ? `<p style="font-size:12px; margin-top:8px; font-weight:bold;">📌 المفهوم المقترح مراجعته: ${q.concept}</p>` : ''}
+            <div style="text-align:left; margin-top:16px;">
+              <button class="btn btn-primary" onclick="nextQuestion()">
+                ${state.currentIndex + 1 >= state.questions.length ? 'عرض النتيجة والتقرير النهائي' : 'الانتقال للسؤال التالي ⬅️'}
+              </button>
+            </div>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="card">
+          <div class="header-bar">
+            <div>
+              <span class="tag" style="background:rgba(37,99,235,0.12); color:var(--primary); font-weight:bold;">${q.lessonTitle}</span>
+              <span class="tag" style="margin-right:6px;">المعيار: ${q.standard}</span>
+            </div>
+            <div class="stats">
+              <span class="stat-badge">⭐ النقاط: ${state.score}</span>
+              ${state.streak > 1 ? `<span class="stat-badge streak">🔥 متتالية: ${state.streak}</span>` : ''}
+              <span style="font-size:13px; font-weight:bold; color:var(--text-muted);">
+                السؤال ${state.currentIndex + 1} / ${state.questions.length}
+              </span>
+            </div>
+          </div>
+
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: ${progressPercent}%"></div>
+          </div>
+
+          <div style="margin-bottom: 24px;">
+            <div style="font-size: 13px; color: var(--accent); font-weight:bold; margin-bottom: 6px;">المفهوم: ${q.concept}</div>
+            <h2 style="font-size: 20px; font-weight: 900; line-height: 1.5;">${q.question}</h2>
+          </div>
+
+          <div>
+            ${optionsHtml}
+          </div>
+
+          ${feedbackHtml}
+        </div>
+      `;
+    }
+
+    function renderReport() {
+      const total = state.answers.length;
+      const correct = state.answers.filter(a => a.isCorrect).length;
+      const percent = total > 0 ? Math.round((correct / total) * 100) : 0;
+
+      let tier = 'يحتاج إلى مراجعة';
+      let tierColor = '#d97706';
+      if (percent >= 90) { tier = 'ممتاز 🌟'; tierColor = '#059669'; }
+      else if (percent >= 75) { tier = 'جيد جداً 👏'; tierColor = '#2563eb'; }
+      else if (percent >= 60) { tier = 'جيد 👍'; tierColor = '#0284c7'; }
+
+      const mistakes = state.answers.filter(a => !a.isCorrect);
+      const uniqueMistakeConcepts = Array.from(new Set(mistakes.map(m => m.question.concept)));
+      const uniqueStrengthConcepts = Array.from(new Set(state.answers.filter(a => a.isCorrect).map(a => a.question.concept)));
+
+      return `
+        <div class="card" style="text-align: center;">
+          <h1 style="font-size: 26px; font-weight: 900; margin-bottom: 8px;">أحسنت! لقد أكملت اللعبة 🏆</h1>
+          <h2 style="font-size: 19px; color: var(--accent); margin-bottom: 16px;">تهانينا يا ${state.studentName}!</h2>
+          <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px;">
+            مادة العلوم - الصف السابع - الوحدة الأولى: الطبيعة الجُسيمية للمادة
+          </p>
+
+          <div class="grid-2" style="margin-bottom: 24px;">
+            <div style="background:rgba(37,99,235,0.1); padding:16px; border-radius:14px; border:1px solid rgba(37,99,235,0.2);">
+              <span style="font-size:12px; color:var(--primary); font-weight:bold; display:block;">⭐ مجموع النقاط</span>
+              <span style="font-size:30px; font-weight:900; color:var(--primary);">${state.score}</span>
+            </div>
+            <div style="background:rgba(5,150,105,0.1); padding:16px; border-radius:14px; border:1px solid rgba(5,150,105,0.2);">
+              <span style="font-size:12px; color:var(--success); font-weight:bold; display:block;">الإجابات الصحيحة</span>
+              <span style="font-size:30px; font-weight:900; color:var(--success);">${correct} / ${total}</span>
+            </div>
+            <div style="background:rgba(148,163,184,0.1); padding:16px; border-radius:14px; border:1px solid var(--card-border);">
+              <span style="font-size:12px; color:var(--text-muted); font-weight:bold; display:block;">النسبة المئوية</span>
+              <span style="font-size:30px; font-weight:900;">${percent}%</span>
+            </div>
+            <div style="background:rgba(217,119,6,0.1); padding:16px; border-radius:14px; border:1px solid rgba(217,119,6,0.25);">
+              <span style="font-size:12px; color:var(--warning); font-weight:bold; display:block;">مستوى الأداء</span>
+              <span style="font-size:22px; font-weight:900; color:${tierColor};">${tier}</span>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; text-align:right; margin-bottom:24px;">
+            <div style="background:rgba(5,150,105,0.08); border:1px solid rgba(5,150,105,0.2); padding:16px; border-radius:14px;">
+              <h4 style="color:var(--success); font-size:14px; font-weight:bold; margin-bottom:8px;">نقاط القوة:</h4>
+              <ul style="font-size:13px; padding-right:18px;">
+                ${uniqueStrengthConcepts.slice(0, 5).map(c => `<li>${c}</li>`).join('') || '<li>واصل التدرب!</li>'}
+              </ul>
+            </div>
+            <div style="background:rgba(225,29,72,0.08); border:1px solid rgba(225,29,72,0.2); padding:16px; border-radius:14px;">
+              <h4 style="color:var(--danger); font-size:14px; font-weight:bold; margin-bottom:8px;">المفاهيم التي تحتاج إلى مراجعة:</h4>
+              <ul style="font-size:13px; padding-right:18px;">
+                ${uniqueMistakeConcepts.map(c => `<li>${c}</li>`).join('') || '<li>لا توجد أخطاء، أحسنت!</li>'}
+              </ul>
+            </div>
+          </div>
+
+          <div style="background:rgba(37,99,235,0.08); padding:16px; border-radius:14px; font-size:13px; text-align:right; margin-bottom:24px; border:1px solid rgba(37,99,235,0.2);">
+            <strong style="color:var(--primary);">توجيه تربوي مخصص:</strong><br>
+            ${uniqueMistakeConcepts.length > 0 
+              ? `ننصحك يا ${state.studentName} بمراجعة المفاهيم العلمية الموضحة أعلاه، واستخدام زر "مراجعة أخطائي" لإعادة حلها فوراً وترسيخ الفهم.`
+              : `أداء استثنائي رائع يا ${state.studentName}! إتقان كامل وتام لجميع معايير ومفاهيم الوحدة الأولى.`}
+          </div>
+
+          <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px;">
+            ${mistakes.length > 0 ? `
+              <button class="btn btn-primary" style="background:var(--warning);" onclick="startQuiz('mistakes', true)">
+                مراجعة أخطائي (${mistakes.length}) 🔄
+              </button>
+            ` : ''}
+            <button class="btn btn-primary" onclick="startQuiz(state.selectedLessonId)">إعادة اللعبة 🔁</button>
+            <button class="btn btn-secondary" onclick="state.view='level_select'; render();">قائمة الدروس 📋</button>
+            <button class="btn btn-secondary" onclick="window.print()">طباعة التقرير 🖨️</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function render() {
+      const app = document.getElementById('app');
+      if (!app) return;
+
+      if (state.view === 'welcome') {
+        app.innerHTML = renderWelcome();
+      } else if (state.view === 'level_select') {
+        app.innerHTML = renderLevelSelect();
+        initCanvasSim();
+      } else if (state.view === 'quiz') {
+        app.innerHTML = renderQuiz();
+      } else if (state.view === 'report') {
+        app.innerHTML = renderReport();
+      }
+    }
+
+    let simAnimId = null;
+    function initCanvasSim() {
+      const canvas = document.getElementById('simCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      if (simAnimId) cancelAnimationFrame(simAnimId);
+
+      let tick = 0;
+      function loop() {
+        tick++;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.strokeStyle = state.isDark ? '#475569' : '#94a3b8';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(10, 10, canvas.width - 20, canvas.height - 20);
+
+        if (state.simState === 'solid') {
+          const solidRadius = 8;
+          const diameter = solidRadius * 2; // 16px - touching with zero gaps
+          const rows = 5;
+          const cols = 12;
+          const startX = (canvas.width - cols * diameter) / 2 + solidRadius;
+          const startY = canvas.height - 18 - rows * diameter + solidRadius;
+
+          for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < cols; c++) {
+              const bx = startX + c * diameter;
+              const by = startY + r * diameter;
+              const x = bx + Math.sin(tick * 0.25 + c + r) * 0.4;
+              const y = by + Math.cos(tick * 0.25 + c + r) * 0.4;
+              ctx.beginPath();
+              ctx.arc(x, y, solidRadius, 0, Math.PI * 2);
+              ctx.fillStyle = state.isDark ? '#38bdf8' : '#2563eb';
+              ctx.fill();
+              ctx.strokeStyle = state.isDark ? '#0284c7' : '#1d4ed8';
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
+          }
+        } else if (state.simState === 'liquid') {
+          for (let i = 0; i < 22; i++) {
+            const x = 30 + (i % 7) * 28 + Math.sin(tick * 0.05 + i) * 6;
+            const y = 60 + Math.floor(i / 7) * 20 + Math.cos(tick * 0.05 + i) * 4;
+            ctx.beginPath();
+            ctx.arc(x, y, 7, 0, Math.PI * 2);
+            ctx.fillStyle = state.isDark ? '#06b6d4' : '#0284c7';
+            ctx.fill();
+          }
+        } else {
+          for (let i = 0; i < 12; i++) {
+            const x = 25 + ((i * 37 + tick * 2) % (canvas.width - 50));
+            const y = 25 + ((i * 29 + tick * 1.5) % (canvas.height - 50));
+            ctx.beginPath();
+            ctx.arc(x, y, 6, 0, Math.PI * 2);
+            ctx.fillStyle = state.isDark ? '#fb7185' : '#e11d48';
+            ctx.fill();
+          }
+        }
+
+        simAnimId = requestAnimationFrame(loop);
+      }
+      loop();
+    }
+
+    window.onload = init;
+  </script>
+</body>
+</html>

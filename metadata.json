@@ -1,0 +1,6 @@
+{
+  "name": "مغامرة العلوم: الطبيعة الجسيمية للمادة",
+  "description": "لعبة تعليمية تفاعلية شاملة لمادة العلوم للصف السابع - المنهج القطري - الوحدة 1: الطبيعة الجسيمية للمادة.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
